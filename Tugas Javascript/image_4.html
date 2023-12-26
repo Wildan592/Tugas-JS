@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: bisque;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #imageContainer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #Imagee {
+            max-width: 100%;
+            max-height: 400px;
+            margin-top: 10px;
+        }
+
+        #imageInfo {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        nav {
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+        .Akun {
+            font-size: xx-large;
+        }
+        a {
+            text-decoration: solid;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="Akun">
+            <a href="login_1.html">1</a>
+            <a href="kurs_2.html">2</a>
+            <a href="chatbox_3.html">3</a>
+            <a href="image_4.html">4</a>
+            <a href="form_5.html">5</a>
+        </div>
+    </nav>
+    <h1>Picture</h1>
+
+    <label for="imageDropdown">Pilih Foto:</label>
+    <select id="imageDropdown" onchange="Imagee()">
+        <option value="Gambar_1">Gambar 1</option>
+        <option value="Gambar_2">Gambar 2</option>
+        <option value="Gambar_3">Gambar 3</option>
+        <option value="Gambar_4">Gambar 4</option>
+        <option value="Gambar_5">Gambar 5</option>
+    </select>
+    <hr>
+    <div id="imageContainer">
+        <img id="Imagee" src="image/Logo STT NF.jpg" alt="Selected Image">
+        <div id="imageInfo"></div>
+    </div>
+    <script>
+        function Imagee() {
+            let selectedImage = document.getElementById("imageDropdown").value;
+            let Imagee = document.getElementById("Imagee");
+            Imagee.src = getImageUrl(selectedImage);
+            let imageInfo = document.getElementById("imageInfo");
+            imageInfo.textContent = " " + selectedImage;
+        }
+
+        function getImageUrl(imageName) {
+            let imageUrls = {
+                Gambar_1: "image/k1.jpg",
+                Gambar_2: "image/k2.jpg",
+                Gambar_3: "image/k4.jpg",
+                Gambar_4: "image/k5.jpg",
+                Gambar_5: "image/k3.jpg"
+            };
+            return imageUrls[imageName];
+        }
+
+    </script>
+</body>
+</html>

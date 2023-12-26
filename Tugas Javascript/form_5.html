@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validasi</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: bisque;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        nav {
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+        .Akun {
+            font-size: xx-large;
+        }
+        a {
+            text-decoration: solid;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="Akun">
+            <a href="login_1.html">1</a>
+            <a href="kurs_2.html">2</a>
+            <a href="chatbox_3.html">3</a>
+            <a href="image_4.html">4</a>
+            <a href="form_5.html">5</a>
+        </div>
+    </nav>
+    <h1>Isi Form </h1>
+    <form id="bookingForm" onsubmit="validateForm(event)">
+        <label for="namaPelanggan">Nama Pelanggan:</label>
+        <input type="text" id="namaPelanggan" name="namaPelanggan" required maxlength="30">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="jamKeberangkatan">Jam Keberangkatan:</label>
+        <input type="text" id="jamKeberangkatan" name="jamKeberangkatan" required pattern="^(?:[01]\d|2[0-3]):[0-5]\d$">
+
+        <label for="tujuanKeberangkatan">Tujuan Keberangkatan:</label>
+        <input type="text" id="tujuanKeberangkatan" name="tujuanKeberangkatan" required>
+
+        <label for="jumlahTiket">Jumlah Tiket:</label>
+        <input type="number" id="jumlahTiket" name="jumlahTiket" required min="1" max="10">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result"></div>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+
+            let namaPelanggan = document.getElementById("namaPelanggan").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let jamKeberangkatan = document.getElementById("jamKeberangkatan").value.trim();
+            let tujuanKeberangkatan = document.getElementById("tujuanKeberangkatan").value.trim();
+            let jumlahTiket = document.getElementById("jumlahTiket").value;
+
+            clearErrors();
+
+            if (namaPelanggan === "" || namaPelanggan.length > 30) {
+                showError("namaPelanggan", "Nama Pelanggan harus diisi dan maksimal 30 karakter.");
+            }
+
+            if (!isValidEmail(email)) {
+                showError("email", "Email harus diisi dengan format yang valid.");
+            }
+
+            if (!isValidTime(jamKeberangkatan)) {
+                showError("jamKeberangkatan", "Jam Keberangkatan harus diisi dengan format jam antara 00:00 - 23:59.");
+            }
+
+            if (tujuanKeberangkatan === "") {
+                showError("tujuanKeberangkatan", "Tujuan Keberangkatan harus diisi.");
+            }
+
+            if (isNaN(jumlahTiket) || jumlahTiket < 1 || jumlahTiket > 10) {
+                showError("jumlahTiket", "Jumlah Tiket harus diisi dengan bilangan bulat antara 1 - 10.");
+            }
+
+            if (!document.querySelector(".error")) {
+                displayResult(namaPelanggan, email, jamKeberangkatan, tujuanKeberangkatan, jumlahTiket);
+            }
+        }
+
+        function isValidEmail(email) {
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidTime(time) {
+            let timeRegex = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
+            return timeRegex.test(time);
+        }
+
+        function showError(inputId, errorMessage) {
+            let inputElement = document.getElementById(inputId);
+            inputElement.classList.add("error");
+
+            let errorElement = document.createElement("div");
+            errorElement.className = "error";
+            errorElement.textContent = errorMessage;
+
+            inputElement.parentNode.appendChild(errorElement);
+        }
+
+        function clearErrors() {
+            let errorElements = document.querySelectorAll(".error");
+            errorElements.forEach(function (errorElement) {
+                errorElement.parentNode.removeChild(errorElement);
+            });
+
+            let inputElements = document.querySelectorAll("input");
+            inputElements.forEach(function (inputElement) {
+                inputElement.classList.remove("error");
+            });
+        }
+
+        function displayResult(namaPelanggan, email, jamKeberangkatan, tujuanKeberangkatan, jumlahTiket) {
+            let resultElement = document.getElementById("result");
+            resultElement.innerHTML = `
+        <h2>Form Data:</h2>
+        <p><strong>Nama Pelanggan:</strong> ${namaPelanggan}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Jam Keberangkatan:</strong> ${jamKeberangkatan}</p>
+        <p><strong>Tujuan Keberangkatan:</strong> ${tujuanKeberangkatan}</p>
+        <p><strong>Jumlah Tiket:</strong> ${jumlahTiket}</p>
+        `;
+        }
+
+    </script>
+</body>
+</html>

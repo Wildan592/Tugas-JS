@@ -1,0 +1,19 @@
+body{
+    text-align: center;
+    background-color:bisque;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h1 {
+    text-align: center;
+}
+nav {
+    background-color: white;
+    color: black;
+}
+.Akun {
+   font-size: xx-large;
+}
+a {
+    text-decoration: solid;
+    color: black;
+}

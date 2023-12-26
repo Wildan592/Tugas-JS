@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: bisque;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #chatbox-container {
+            position:fixed;
+            bottom: 200px;
+            right: 500px;
+        }
+
+        #chatbox {
+            width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #chat-messages {
+            height: 250px;
+            overflow-y: scroll;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        #pesan-input {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        #message {
+            flex: 1;
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        h1 {
+            text-align: center;
+        }
+        nav {
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+        .Akun {
+            font-size: xx-large;
+        }
+        a {
+            text-decoration: solid;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="Akun">
+            <a href="login_1.html">1</a>
+            <a href="kurs_2.html">2</a>
+            <a href="chatbox_3.html">3</a>
+            <a href="image_4.html">4</a>
+            <a href="form_5.html">5</a>
+        </div>
+    </nav>
+    <h1>Chatbox</h1>
+    <div id="chatbox-container">
+        <div id="chatbox">
+            <div id="chat-messages"></div>
+            <div id="pesan-input">
+                <input type="text" id="message" placeholder="Ketik pesan">
+                <button onclick="sendPesan()">Kirim</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendPesan() {
+            let pesanInput = document.getElementById("message");
+            let pesanText = pesanInput.value.trim();
+
+            if (pesanText !== "") {
+                let chatPesan = document.getElementById("chat-messages");
+                let newPesan = document.createElement("div");
+                newPesan.textContent = pesanText;
+                chatPesan.appendChild(newPesan);
+
+                pesanInput.value = "";
+
+                chatPesan.scrollTop = chatPesan.scrollHeight;
+            }
+        }
+
+    </script>
+</body>
+</html>

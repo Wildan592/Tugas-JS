@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="Akun">
+            <a href="login_1.html">1</a>
+            <a href="kurs_2.html">2</a>
+            <a href="chatbox_3.html">3</a>
+            <a href="image_4.html">4</a>
+            <a href="form_5.html">5</a>
+        </div>
+    </nav>
+    <h1>Masukan Akun Anda</h1>
+    <hr>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <button type="button" onclick="tugas1()">Login</button>
+    </form>
+    <script>
+        function tugas1() {
+    let usernameInput = document.getElementById("username").value;
+    let passwordInput = document.getElementById("password").value;
+
+    if (usernameInput === "ahmad2017" && passwordInput === "integrity") {      
+        alert("Login Sukses");
+        window.location.href = "halaman_baru.html"; 
+    } else {
+        alert("Login Gagal. Cek kembali Username dan Password.");
+    }
+}
+
+    </script>
+</body>
+</html>

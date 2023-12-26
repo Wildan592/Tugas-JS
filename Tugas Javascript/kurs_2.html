@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurs Rupiah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="Akun">
+            <a href="login_1.html">1</a>
+            <a href="kurs_2.html">2</a>
+            <a href="chatbox_3.html">3</a>
+            <a href="image_4.html">4</a>
+            <a href="form_5.html">5</a>
+        </div>
+    </nav>
+    <h1>Kurs Rupiah</h1>
+
+    <label for="jumlah">Masukkan jumlah:</label>
+    <input type="number" id="jumlah" placeholder="Masukkan" required>
+    <br>
+    <label for="pilih">Pilih:</label>
+    <select id="pilih" onchange="rupiah()">
+        <option value="1">Dollar US</option>
+        <option value="2">Dollar Singapore</option>
+        <option value="3">Ringgit Malaysia</option>
+        <option value="4">Yen Jepang</option>
+        <option value="5">Euro</option>
+        <option value="6">Riyal Arab Saudi</option>
+    </select>
+    <br>
+    <hr>
+    <label for="hasil">Hasil in Rupiah:</label>
+    <input type="text" id="hasil" readonly>
+    <script>
+        function rupiah() {
+            let jumlah = parseFloat(document.getElementById("jumlah").value);
+            let pilih = document.getElementById("pilih").value;
+            let rupiah = {
+                1: 9915,
+                2: 13472,
+                3: 874,
+                4: 120,
+                5: 15888,
+                6: 3592
+            };
+
+            let result = jumlah * rupiah[pilih];
+            document.getElementById("hasil").value = result.toLocaleString("en-ID"); 
+        }
+
+    </script>
+</body>
+</html>
